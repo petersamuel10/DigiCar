@@ -76,9 +76,7 @@ class AddNewUserFragment : Fragment() {
         }
     }
 
-
     // region variable
     private val mainViewModel: MainViewModel by viewModels()
     //endregion
-
 }

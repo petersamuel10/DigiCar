@@ -25,7 +25,7 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideBaseUrl() = ""
+    fun provideBaseUrl() = "https://api.openweathermap.org/data/2.5/"
 
 
     @Provides

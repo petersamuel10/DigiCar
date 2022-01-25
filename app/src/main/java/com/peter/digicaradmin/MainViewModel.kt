@@ -34,12 +34,24 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             mainIntent.consumeAsFlow().collect {
                 when (it) {
+                    is MainIntent.Temp -> getTemp()
                     is MainIntent.CreateAccount -> createNewAccount(
                         it.userName,
                         it.password,
                         it.phoneNum
                     )
                 }
+            }
+        }
+    }
+
+    private fun getTemp() {
+        viewModelScope.launch {
+            _state.value = MainViewState.Loading
+            _state.value = try {
+                MainViewState.Temp(repository.temp())
+            } catch (e: Exception) {
+                MainViewState.Error(e.localizedMessage)
             }
         }
     }
