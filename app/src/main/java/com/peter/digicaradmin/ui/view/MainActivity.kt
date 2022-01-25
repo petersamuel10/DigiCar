@@ -2,12 +2,16 @@ package com.peter.digicaradmin.ui.view
 
 import android.os.Bundle
 import android.widget.PopupMenu
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.peter.digicaradmin.MainViewModel
 import com.peter.digicaradmin.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -33,4 +37,7 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+    // region variable
+    private val mainViewModel: MainViewModel by viewModels()
+    //endregion
 }

@@ -7,12 +7,12 @@
        android:title="@string/home"/>
 
     <item
-        android:id="@+id/aboutFragment"
+        android:id="@+id/addNewUserFragment"
         android:icon="@drawable/ic_add_user"
         android:title="@string/new_user"/>
 
     <item
-        android:id="@+id/favFragment"
+        android:id="@+id/settingFragment"
         android:icon="@drawable/ic_settings"
         android:title="@string/setting"/>
 

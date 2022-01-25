@@ -12,13 +12,13 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/favFragment"
+        android:id="@+id/addNewUserFragment"
         android:name="com.peter.digicaradmin.ui.view.fragment.AddNewUserFragment"
         android:label="Setting"
         tools:layout="@layout/fragment_add_new_user" />
 
     <fragment
-        android:id="@+id/aboutFragment"
+        android:id="@+id/settingFragment"
         android:name="com.peter.digicaradmin.ui.view.fragment.SettingFragment"
         android:label="Note"
         tools:layout="@layout/fragment_setting" />

@@ -1,7 +1,9 @@
 package com.peter.digicaradmin.ui.intent
 
 sealed
-class MainIntent{
+class MainIntent {
 
-    class Login(val userName: String, val password: String) : MainIntent()
+    class Login(val email: String, val password: String) : MainIntent()
+    class CreateAccount(val userName: String, val password: String, val phoneNum: String) :
+        MainIntent()
 }

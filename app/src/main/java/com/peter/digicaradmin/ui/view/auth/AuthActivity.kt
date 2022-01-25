@@ -66,11 +66,6 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }
-
     private fun finishAct() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()

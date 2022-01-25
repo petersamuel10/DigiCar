@@ -34,8 +34,7 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             userIntent.consumeAsFlow().collect {
                 when (it) {
-                    is MainIntent.Login -> login(it.userName, it.password)
-                    //  is MainIntent.GetUserInfo -> getUserInfo()
+                    is MainIntent.Login -> login(it.email, it.password)
                 }
             }
         }
@@ -45,8 +44,9 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             _state.value = MainViewState.Loading
             val result = repository.login(email, password)
-            _state.value = if (result!!.isSuccessful)
-                MainViewState.Login(result) else MainViewState.Error("signIn failure")
+            if (result != null)
+                _state.value = if (result.isSuccessful)
+                    MainViewState.Login(result) else MainViewState.Error("sign In failure")
         }
     }
 }

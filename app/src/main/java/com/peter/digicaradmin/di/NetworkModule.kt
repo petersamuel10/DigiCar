@@ -1,7 +1,7 @@
 package com.peter.digicaradmin.di
 
 import android.content.Context
-import com.church.ministry.data.api.ApiHelperImpl
+import com.peter.digicaradmin.data.api.ApiHelperImpl
 import com.peter.digicaradmin.data.api.ApiService
 import com.peter.digicaradmin.base.App
 import com.peter.digicaradmin.data.api.ApiHelper
