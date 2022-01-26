@@ -3,8 +3,7 @@ package com.peter.digicaradmin
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firestore.v1.Document
+import com.peter.digicaradmin.data.model.ConsultationModel
 import com.peter.digicaradmin.data.repository.MainRepository
 import com.peter.digicaradmin.ui.intent.MainIntent
 import com.peter.digicaradmin.ui.viewState.MainViewState
@@ -22,7 +21,7 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 class MainViewModel @Inject constructor(
     private val repository: MainRepository,
-    private val db:FirebaseFirestore
+    private val db: FirebaseFirestore
 ) : ViewModel() {
 
     val mainIntent = Channel<MainIntent>(Channel.UNLIMITED)
@@ -71,20 +70,27 @@ class MainViewModel @Inject constructor(
     }
 
     private fun getConsultation() {
-        val data:ArrayList<ArrayList<String>> = arrayListOf()
+        val data: ArrayList<ConsultationModel> = arrayListOf()
         viewModelScope.launch {
             _state.value = MainViewState.Loading
-             db.collection("consultation")
-                    .get()
-                    .addOnSuccessListener { result ->
-                        for (document in result) {
-                            data.add( arrayListOf(document["consultation"].toString()))
-                            _state.value = MainViewState.Consultation(data)
-                        }
-                    }
-                    .addOnFailureListener { exception ->
+            db.collection("consultation")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
 
+                        data.add(
+                            ConsultationModel(
+                                document.get("timeTxt").toString(),
+                                document.get("consultation").toString(),
+                                document.get("userName").toString()
+                            )
+                        )
+                        _state.value = MainViewState.Consultation(data)
                     }
+                }
+                .addOnFailureListener { exception ->
+
+                }
         }
     }
 
