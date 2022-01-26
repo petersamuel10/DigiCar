@@ -3,6 +3,7 @@ package com.peter.digicaradmin.data.api
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.peter.digicaradmin.data.model.Temp
 
 

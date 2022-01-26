@@ -5,6 +5,7 @@ class MainIntent {
 
     class Login(val email: String, val password: String) : MainIntent()
     object Temp : MainIntent()
+    object Consultation : MainIntent()
     class CreateAccount(val userName: String, val password: String, val phoneNum: String) :
         MainIntent()
 }

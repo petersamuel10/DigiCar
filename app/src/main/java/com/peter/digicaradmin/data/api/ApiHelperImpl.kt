@@ -4,6 +4,7 @@ import com.church.ministry.util.NetworkHelper
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.peter.digicaradmin.data.model.Temp
 import javax.inject.Inject

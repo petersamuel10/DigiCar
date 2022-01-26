@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     is MainViewState.Temp -> {
                         name.text = it.temp.name
-                        temp.text = it.temp.main.temp.toString() + "C"
+                        temp.text = it.temp.main.temp.toString()
                     }
                     is MainViewState.Error -> {
                         Toast.makeText(this@MainActivity, it.error, Toast.LENGTH_LONG).show()

@@ -11,12 +11,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/_4sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
         android:clipToPadding="false"
-        android:paddingVertical="@dimen/_8sdp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:spanCount="2"
-        tools:layout_editor_absoluteX="8dp" />
+        android:paddingVertical="@dimen/_16sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

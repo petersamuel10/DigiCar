@@ -2,6 +2,9 @@ package com.peter.digicaradmin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firestore.v1.Document
 import com.peter.digicaradmin.data.repository.MainRepository
 import com.peter.digicaradmin.ui.intent.MainIntent
 import com.peter.digicaradmin.ui.viewState.MainViewState
@@ -19,6 +22,7 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 class MainViewModel @Inject constructor(
     private val repository: MainRepository,
+    private val db:FirebaseFirestore
 ) : ViewModel() {
 
     val mainIntent = Channel<MainIntent>(Channel.UNLIMITED)
@@ -35,6 +39,7 @@ class MainViewModel @Inject constructor(
             mainIntent.consumeAsFlow().collect {
                 when (it) {
                     is MainIntent.Temp -> getTemp()
+                    is MainIntent.Consultation -> getConsultation()
                     is MainIntent.CreateAccount -> createNewAccount(
                         it.userName,
                         it.password,
@@ -62,6 +67,24 @@ class MainViewModel @Inject constructor(
             val result = repository.createNewAccount(userName, password, phoneNum)
             if (result != null)
                 _state.value = MainViewState.CreateAccount(result)
+        }
+    }
+
+    private fun getConsultation() {
+        val data:ArrayList<ArrayList<String>> = arrayListOf()
+        viewModelScope.launch {
+            _state.value = MainViewState.Loading
+             db.collection("consultation")
+                    .get()
+                    .addOnSuccessListener { result ->
+                        for (document in result) {
+                            data.add( arrayListOf(document["consultation"].toString()))
+                            _state.value = MainViewState.Consultation(data)
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+
+                    }
         }
     }
 
